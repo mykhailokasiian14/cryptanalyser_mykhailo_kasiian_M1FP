@@ -2,8 +2,8 @@ package org.example;
 
 import java.io.IOException;
 
-public class Runner {
-    public void run(String[] args) throws IOException {
+ class Runner {
+     void run(String[] args) throws IOException {
         if (args.length < 2) {
             throw new IllegalArgumentException("Формат: command filePath [key]");
         }
