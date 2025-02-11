@@ -20,28 +20,29 @@ package org.example;
     //більш підходящої назви, крім "шифр", не придумав ;)
     private String chipher(String text, int key) {
         int textLength = text.length();
-        int alphabetLength = ALPHABET_EN.length;
         StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < textLength; i++) {
             char currentChar = text.charAt(i);
-            boolean found = false;
-
-            for (int j = 0; j < alphabetLength; j++) {
-                if (currentChar == ALPHABET_EN[j]) {
-                    int newIndex = (j + key) % alphabetLength;
-                    if (newIndex < 0) {
-                        newIndex += alphabetLength;
-                    }
-                    result.append(ALPHABET_EN[newIndex]);
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                result.append(currentChar);
-            }
+            char shiftedChar = getShiftedChar(currentChar, key);
+            result.append(shiftedChar);
         }
         return result.toString();
     }
+
+    private char getShiftedChar(char currentChar, int key){
+        int alphabetLength = ALPHABET_EN.length;
+
+        for (int j = 0; j < alphabetLength; j++) {
+            if (currentChar == ALPHABET_EN[j]) {
+                int newIndex = (j + key) % alphabetLength;
+                if (newIndex < 0) {
+                    newIndex += alphabetLength;
+                }
+                return ALPHABET_EN[newIndex];
+            }
+        }
+        return currentChar;
+    }
+
 }

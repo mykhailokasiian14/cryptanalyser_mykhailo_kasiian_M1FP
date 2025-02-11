@@ -24,12 +24,16 @@ import java.util.Scanner;
         System.out.println("Введіть команду (ENCRYPT або DECRYPT):");
         String command = scanner.nextLine().toUpperCase();
 
-        while (!command.equals("ENCRYPT") && !command.equals("DECRYPT")) {
+        while (!isEnteredCommandExists(command)) {
             System.out.println("Невідома команда! Спробуйте ще раз:");
             command = scanner.nextLine().toUpperCase();
         }
         return command;
     }
+
+     private boolean isEnteredCommandExists(String command){
+         return command.equals("ENCRYPT") || command.equals("DECRYPT");
+     }
 
     private String promptFilePath(Scanner scanner) {
         System.out.println("Введіть шлях до файлу:");
